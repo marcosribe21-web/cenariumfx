@@ -4,12 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cenarium Efeitos Especiais e Eventos Ltda</title>
- <style>
+  
+  <style>
     /* CSS GLOBAL */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, black, #0a1a2f);
+      /* Mantendo o gradiente no fundo, mas vamos usar um fundo sólido no conteúdo */
+      background: linear-gradient(180deg, black, #0a1a2f); 
       color: white;
       text-align: center; 
     }
@@ -29,23 +31,37 @@
     
     /* ESTILO DO SLOGAN (H2) */
     h2 {
-      color: #aaa; /* Cor cinza mais clara, como você tinha antes no <p> */
-      font-weight: normal; /* Deixa o slogan com aparência de parágrafo */
-      margin-top: 5px; /* Menos espaço que o h1 */
+      color: silver; /* Cor cinza padrão para títulos de seção */
+      font-weight: normal; 
+      margin-top: 5px;
     }
     
-    /* ESTILOS DE SEÇÃO */
+    /* NOVO: ESTILO DO CONTAINER DE CONTEÚDO PRINCIPAL */
+    .main-content {
+        background-color: #050a11; /* Fundo sólido e escuro para destacar as seções */
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    
+    /* ESTILOS DE SEÇÃO (Mais espaçamento e separador visual) */
     section {
-      padding: 40px 20px;
+      padding: 60px 20px; /* Mais espaço vertical para "respirar" */
       max-width: 800px;
       margin: auto;
       text-align: center;
+      border-top: 1px solid #1a3a5f; /* Linha sutil para separar as seções */
     }
     
-    /* AJUSTE NA IMAGEM (PARA DAR UM RESPIRO ABAIXO) */
+    /* AJUSTE NA IMAGEM */
     img {
         margin-bottom: 10px;
     }
+
+    /* ESTILO DO FOOTER */
+    footer {
+        border-top: 1px solid #1a3a5f;
+    }
+
   </style>
 </head>
 
@@ -57,19 +73,13 @@
     <h2>Aqui, a sua imaginação se transforma em realidade!</h2>
   </header>
 
-  <section id="servicos">
-    <h2>Serviços</h2>
-    <p>Efeitos especiais mecânicos e atmosféricos, arte e adereços, vidro cenográfico e mais.</p>
-  </section>
+  <div class="main-content">
 
-  <section id="contato">
-    <h2>Contato</h2>
-    <p>Email: contato@cenarium.com.br</p>
-    <p>Telefone: (XX) XXXX-XXXX</p>
-  </section>
+    <section id="servicos">
+      <h2>Serviços</h2>
+      <p>Efeitos especiais mecânicos e atmosféricos, arte e adereços, vidro cenográfico e mais.</p>
+    </section>
 
-  <footer style="padding: 20px; font-size: 14px; color: #aaa;">
-    © 2025 Cenarium Efeitos Especiais e Eventos Ltda
-  </footer>
-</body>
-</html>
+    <section id="contato">
+      <h2>Contato</h2>
+      <p>Email: contato@
