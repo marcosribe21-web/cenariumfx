@@ -9,56 +9,98 @@
     /* CSS GLOBAL */
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      /* Mantendo o gradiente no fundo, mas vamos usar um fundo sólido no conteúdo */
-      background: linear-gradient(180deg, black, #0a1a2f); 
+      font-family: 'Inter', sans-serif; /* Usando Inter como padrão moderno */
+      background-color: #0d121c; /* Fundo escuro uniforme */
       color: white;
       text-align: center; 
     }
     
-    /* ESTILOS DO HEADER */
-    header {
-      background: rgba(0, 0, 0, 0.7);
-      padding: 20px;
+    /* NAV BAR (TOPO) */
+    nav {
+        background-color: #0d121c;
+        padding: 15px 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     }
-    
+    nav a {
+        color: #9bd0ff;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+    nav a:hover {
+        color: #fff;
+    }
+
+    /* HEADER (NOVO BANNER DE DESTAQUE) */
+    header {
+      /* Imagem de fundo placeholder. Substitua o URL abaixo pela sua imagem real! */
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                  url("https://placehold.co/1200x500/0a1a2f/9bd0ff?text=Cenarium+FX+Efeitos") center/cover no-repeat;
+      padding: 80px 20px; /* Mais padding para imitar um banner */
+      text-align: center;
+      min-height: 40vh; /* Altura mínima para o banner */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
     /* ESTILOS DE TÍTULOS */
     h1 {
       color: #9bd0ff;
-      margin-top: 10px; /* Espaço entre a logo e o título */
-      font-family: Arial, sans-serif; 
+      margin-top: 10px;
+      font-size: 2.5rem;
     }
     
     /* ESTILO DO SLOGAN (H2) */
     h2 {
-      color: silver; /* Cor cinza padrão para títulos de seção */
-      font-weight: normal; 
-      margin-top: 5px;
+      color: #bbb;
+      font-weight: 300;
+      font-size: 1.2rem;
+      margin-bottom: 30px;
     }
     
-    /* NOVO: ESTILO DO CONTAINER DE CONTEÚDO PRINCIPAL */
-    .main-content {
-        background-color: #050a11; /* Fundo sólido e escuro para destacar as seções */
-        padding-top: 20px;
-        padding-bottom: 20px;
+    /* BOTÃO CTA (CALL TO ACTION) - Minimalista */
+    .cta-button {
+        display: inline-block;
+        background-color: #9bd0ff;
+        color: #0d121c;
+        padding: 10px 25px; /* Tamanho discreto */
+        text-decoration: none;
+        border-radius: 20px; /* Borda suave */
+        font-weight: bold;
+        transition: background-color 0.3s;
+        margin-top: 20px;
+        font-size: 0.9rem; 
     }
-    
-    /* ESTILOS DE SEÇÃO (Mais espaçamento e separador visual) */
-    section {
-      padding: 60px 20px; /* Mais espaço vertical para "respirar" */
-      max-width: 800px;
-      margin: auto;
-      text-align: center;
-      border-top: 1px solid #1a3a5f; /* Linha sutil para separar as seções */
-    }
-    
-    /* AJUSTE NA IMAGEM */
-    img {
-        margin-bottom: 10px;
+    .cta-button:hover {
+        background-color: #fff;
     }
 
+    /* CONTAINER DE CONTEÚDO PRINCIPAL (Separa as seções do fundo gradiente) */
+    .main-content {
+        background-color: #050a11;
+    }
+    
+    /* ESTILOS DE SEÇÃO */
+    section {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+      border-top: 1px solid #1a3a5f; /* Separador visual */
+    }
+    
+    /* AJUSTE NA IMAGEM (Dentro do header) */
+    header img {
+        margin-bottom: 20px;
+    }
+    
     /* ESTILO DO FOOTER */
     footer {
+        padding: 20px; 
+        font-size: 14px; 
+        color: #aaa;
         border-top: 1px solid #1a3a5f;
     }
 
@@ -66,28 +108,58 @@
 </head>
 
 <body>
-  <header>
-    <img src="logo.png.png" alt="Cenarium FX Logo" width="180">
+    <!-- MENU DE NAVEGAÇÃO -->
+    <nav>
+        <a href="#quem-somos">QUEM SOMOS</a>
+        <a href="#servicos">SERVIÇOS</a>
+        <a href="#portfolio">PORTFÓLIO</a>
+        <a href="#contato">CONTATO</a>
+    </nav>
     
-    <h1>Cenarium Efeitos Especiais e Eventos Ltda</h1>
-    <h2>Aqui, a sua imaginação se transforma em realidade!</h2>
-  </header>
+    <!-- HEADER/BANNER -->
+    <header>
+      <!-- Logo -->
+      <img src="logo.png.png" alt="Cenarium FX Logo" width="180">
+      
+      <h1>Cenarium Efeitos Especiais e Eventos Ltda</h1>
+      <h2>Aqui, a sua imaginação se transforma em realidade!</h2>
+      
+      <!-- Botão CTA minimalista -->
+      <a href="#contato" class="cta-button">FALE CONOSCO</a>
+    </header>
 
-  <div class="main-content">
+    <!-- CONTAINER DE SEÇÕES -->
+    <div class="main-content">
 
-    <section id="servicos">
-      <h2>Serviços</h2>
-      <p>Efeitos especiais mecânicos e atmosféricos, arte e adereços, vidro cenográfico e mais.</p>
-    </section>
+      <section id="quem-somos">
+        <h2>Quem Somos</h2>
+        <p>A Cenarium FX é uma produtora focada em transformar visões criativas em espetáculos visuais inesquecíveis, atuando há mais de 10 anos no mercado de eventos, cinema e publicidade. Nossa paixão é a inovação em efeitos especiais e a excelência técnica.</p>
+      </section>
 
-    <section id="contato">
-      <h2>Contato</h2>
-      <p>Email: contato@cenarium.com.br</p>
-      <p>Telefone: (XX) XXXX-XXXX</p>
-    </section>
+      <section id="servicos">
+        <h2>Serviços e Efeitos</h2>
+        <p>Efeitos especiais mecânicos, pirotecnia controlada, chuva, neve artificial, arte e adereços cenográficos, vidro cenográfico e muito mais.</p>
+      </section>
 
-  </div> <footer style="padding: 20px; font-size: 14px; color: #aaa;">
-    © 2025 Cenarium Efeitos Especiais e Eventos Ltda
-  </footer>
+      <section id="portfolio">
+        <h2>Portfólio</h2>
+        <p>Confira alguns de nossos trabalhos de maior destaque em filmes, shows e eventos corporativos.</p>
+        <!-- Placeholder para a seção de Portfólio - Adicione suas imagens aqui -->
+        <div style="background-color: #1a3a5f; padding: 50px; margin-top: 30px; border-radius: 8px;">
+            <p>Em breve: Galeria de Fotos e Vídeos</p>
+        </div>
+      </section>
+
+      <section id="contato">
+        <h2>Contato</h2>
+        <p>Email: contato@cenarium.com.br</p>
+        <p>Telefone: (21) 96427-0804</p> <!-- Telefone atualizado -->
+      </section>
+
+    </div> <!-- FIM DO main-content -->
+
+    <footer>
+      © 2025 Cenarium Efeitos Especiais e Eventos Ltda
+    </footer>
 </body>
 </html>
