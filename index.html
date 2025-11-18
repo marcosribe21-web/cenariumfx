@@ -73,35 +73,19 @@
       font-size:0.95rem;
       transition:.2s;
     }
-    nav a:hover{
-      color:white;
-    }
+    nav a:hover{ color:white; }
 
     /* ============================================
-       HEADER (fundo limpo + marca d'água lateral)
+       HEADER (logo grande, fundo limpo)
     ============================================ */
     header{
       background:var(--bg-1);
       position:relative;
-      min-height:62vh;
+      min-height:65vh;
       display:flex;
       align-items:center;
       justify-content:center;
       padding:40px 20px;
-    }
-
-    /* Logo marca d’água – canto direito, vertical middle */
-    header:after{
-      content:"";
-      position:absolute;
-      right:40px;
-      top:50%;
-      transform:translateY(-50%);
-      width:260px; 
-      height:260px;
-      background:url("logo.png.png") no-repeat center/contain;
-      opacity:0.08;
-      pointer-events:none;
     }
 
     .hero{
@@ -111,19 +95,14 @@
       z-index:10;
     }
     .hero img{
-      width:240px;
-      margin-bottom:15px;
-      filter:drop-shadow(0 6px 15px rgba(0,0,0,0.6));
-    }
-    .hero h1{
-      color:var(--accent);
-      font-size:2.7rem;
-      margin:0 0 10px;
+      width:380px;
+      margin-bottom:25px;
+      filter:drop-shadow(0 8px 20px rgba(0,0,0,0.6));
     }
     .hero p{
       color:var(--muted);
       margin-bottom:25px;
-      font-size:1.1rem;
+      font-size:1.25rem;
     }
     .cta{
       display:inline-block;
@@ -134,9 +113,7 @@
       font-weight:700;
       transition:.2s;
     }
-    .cta:hover{
-      background:white;
-    }
+    .cta:hover{ background:white; }
 
     /* ============================================
        SEÇÕES
@@ -168,9 +145,7 @@
       gap:20px;
     }
     @media(min-width:850px){
-      .who-grid{
-        grid-template-columns:1fr 1fr;
-      }
+      .who-grid{ grid-template-columns:1fr 1fr; }
     }
 
     .card{
@@ -192,6 +167,8 @@
     /* ============================================
        CARROSSEL
     ============================================ */
+    #portfolio{ background:var(--bg-3); }
+
     .carousel-wrap{
       position:relative;
       overflow:hidden;
@@ -211,7 +188,6 @@
       border-radius:12px;
     }
 
-    /* botoes */
     .carousel-btn{
       position:absolute;
       top:50%;
@@ -228,7 +204,6 @@
     .carousel-btn.prev{ left:14px; }
     .carousel-btn.next{ right:14px; }
 
-    /* dots */
     .carousel-dots{
       text-align:center;
       margin-top:10px;
@@ -270,9 +245,7 @@
       gap:20px;
     }
     @media(min-width:850px){
-      .contact-grid{
-        grid-template-columns:1fr 1fr;
-      }
+      .contact-grid{ grid-template-columns:1fr 1fr; }
     }
 
     /* ============================================
@@ -308,8 +281,11 @@
 <header>
   <div class="hero" data-animate>
     <img src="logo.png.png" alt="Cenarium FX">
-    <h1>Cenarium FX</h1>
-    <p>Transformando imaginação em experiências visuais inesquecíveis.</p>
+
+    <p>
+      Transformando imaginação em experiências visuais inesquecíveis.
+    </p>
+
     <a class="cta" href="#contato">FALE CONOSCO</a>
   </div>
 </header>
@@ -387,7 +363,7 @@
         <!-- Ambiental -->
         <div class="slide">
           <div class="card">
-            <img class="esg-img" src="" alt="" onerror="this.style.display='none'">
+            <img class="esg-img" src="" onerror="this.style.display='none'">
             <h3>Ambiental</h3>
             <ul>
               <li>Reaproveitamento de materiais</li>
@@ -402,13 +378,13 @@
         <!-- Social -->
         <div class="slide">
           <div class="card">
-            <img class="esg-img" src="" alt="" onerror="this.style.display='none'">
+            <img class="esg-img" src="" onerror="this.style.display='none'">
             <h3>Social</h3>
             <ul>
-              <li>Saúde, segurança e bem-estar</li>
+              <li>Segurança e bem-estar</li>
               <li>Diversidade e inclusão</li>
               <li>Desenvolvimento da comunidade</li>
-              <li>Capacitação técnica em VFX</li>
+              <li>Capacitação técnica em efeitos especiais</li>
             </ul>
           </div>
         </div>
@@ -416,7 +392,7 @@
         <!-- Governança -->
         <div class="slide">
           <div class="card">
-            <img class="esg-img" src="" alt="" onerror="this.style.display='none'">
+            <img class="esg-img" src="" onerror="this.style.display='none'">
             <h3>Governança</h3>
             <ul>
               <li>Ética e compliance</li>
@@ -429,7 +405,7 @@
         <!-- ODS -->
         <div class="slide">
           <div class="card">
-            <img class="esg-img" src="" alt="" onerror="this.style.display='none'">
+            <img class="esg-img" src="" onerror="this.style.display='none'">
             <h3>ODS</h3>
             <ul>
               <li>ODS 7 — Energia limpa</li>
@@ -468,7 +444,24 @@
 
       <div class="card">
         <h3>Redes Sociais</h3>
-        <p>Instagram • YouTube • LinkedIn</p>
+
+        <p>
+          <a href="https://www.instagram.com/cenariumfx/" target="_blank"
+             style="color:var(--accent); display:block; margin:6px 0;">
+             Instagram
+          </a>
+
+          <a href="https://www.youtube.com/@cenariumefeitosespeciais1343" target="_blank"
+             style="color:var(--accent); display:block; margin:6px 0;">
+             YouTube
+          </a>
+
+          <a href="https://www.tiktok.com/@cenariumfx?_r=1&_t=ZM-91UPs436vuN" target="_blank"
+             style="color:var(--accent); display:block; margin:6px 0;">
+             TikTok
+          </a>
+        </p>
+
       </div>
     </div>
 
