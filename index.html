@@ -1,286 +1,397 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Cenarium FX - Efeitos Especiais</title>
 
   <style>
-    /* --------------------------- GLOBAL --------------------------- */
-    body {
-      margin: 0;
-      font-family: "Inter", Arial, sans-serif;
-      background: #0d121c;
-      color: white;
-      text-align: center;
+    /* --------------------- GLOBAL --------------------- */
+    :root{
+      --bg:#0d121c;
+      --panel:#050a11;
+      --accent:#9bd0ff;
+      --muted:#bfcbd9;
+      --border:#1b2b40;
+      --card:#0f1a28;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:inherit}
+    main{max-width:1200px;margin:0 auto}
+
+    /* --------------------- NAV --------------------- */
+    nav{
+      position:sticky;top:0;background:var(--bg);z-index:40;border-bottom:1px solid rgba(255,255,255,0.02);
+      backdrop-filter: blur(4px);
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:1200px;margin:auto}
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand img{width:44px;height:auto;border-radius:6px}
+    .brand h4{margin:0;color:var(--accent);font-size:1.05rem}
+    .nav-links{display:flex;gap:18px;align-items:center}
+    .nav-links a{color:var(--accent);font-weight:600;text-decoration:none;padding:8px 10px;border-radius:8px;transition:all .18s}
+    .nav-links a:hover{color:#fff;background:rgba(155,208,255,0.06)}
+
+    /* --------------------- HEADER --------------------- */
+    header{
+      background:linear-gradient(rgba(3,8,15,0.60), rgba(3,8,15,0.60)),
+                 url("https://placehold.co/1600x700/0a1a2f/9bd0ff?text=Cenarium+FX") center/cover no-repeat;
+      min-height:58vh;display:flex;align-items:center;justify-content:center;padding:48px 20px;
+    }
+    .hero{
+      text-align:center;max-width:920px;margin:auto;color:#fff;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+      padding:28px;border-radius:12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    }
+    .hero img{width:120px;border-radius:8px;display:block;margin:0 auto 12px}
+    .hero h1{color:var(--accent);margin:8px 0;font-size:2.6rem;letter-spacing:-0.02em}
+    .hero p{color:var(--muted);margin:6px 0 18px;font-size:1.05rem}
+    .cta{display:inline-block;background:var(--accent);color:var(--bg);padding:12px 28px;border-radius:999px;font-weight:700;box-shadow:0 6px 18px rgba(155,208,255,0.06)}
+    .cta:hover{transform:translateY(-2px)}
+
+    /* --------------------- SECTIONS --------------------- */
+    section{padding:64px 20px;border-top:1px solid var(--border);background:linear-gradient(180deg, rgba(255,255,255,0.00), rgba(255,255,255,0.00))}
+    section .container{max-width:1000px;margin:0 auto;text-align:left}
+    section h2{color:var(--accent);font-size:1.4rem;margin-bottom:8px}
+    section p.lead{color:var(--muted);margin-bottom:18px}
+
+    /* --------------------- WHO WE ARE LAYOUT --------------------- */
+    .who-grid{display:grid;grid-template-columns:1fr;gap:18px}
+    .card{background:var(--card);padding:18px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
+    .card h3{margin:0 0 8px;color:#fff}
+    .values-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+    .pill{background:rgba(155,208,255,0.06);padding:8px 12px;border-radius:999px;color:var(--accent);font-weight:600;font-size:0.95rem}
+
+    /* --------------------- CARROSSEL (GENÉRICO) --------------------- */
+    .carousel-wrap{position:relative;margin-top:20px}
+    .carousel-track{display:flex;transition:transform .5s ease}
+    .slide{min-width:100%;padding:12px}
+    .slide img{width:100%;height:420px;object-fit:cover;border-radius:10px;display:block}
+    .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:var(--accent);border:none;padding:10px 12px;border-radius:8px;cursor:pointer;font-weight:700;color:var(--bg)}
+    .carousel-btn.prev{left:12px}
+    .carousel-btn.next{right:12px}
+    .carousel-dots{display:flex;gap:8px;justify-content:center;margin-top:12px}
+    .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.08);cursor:pointer}
+    .dot.active{background:var(--accent)}
+
+    /* --------------------- ESG CARD STYLE --------------------- */
+    .esg-card{min-height:260px;display:flex;flex-direction:column;gap:8px;justify-content:center}
+    .esg-card ul{margin:6px 0 0;padding-left:18px;color:var(--muted);line-height:1.5}
+    .esg-card strong{color:#fff}
+
+    /* --------------------- CONTACT --------------------- */
+    .contact-grid{display:flex;flex-direction:column;gap:12px}
+    .contact-row{display:flex;gap:12px;align-items:center}
+    .contact-row span{color:var(--muted);font-weight:600}
+
+    /* --------------------- FOOTER --------------------- */
+    footer{padding:20px;border-top:1px solid var(--border);text-align:center;color:#9aa8bf;font-size:0.95rem}
+
+    /* --------------------- RESPONSIVE --------------------- */
+    @media(min-width:800px){
+      .who-grid{grid-template-columns:1fr 1fr;align-items:start}
+      .contact-grid{flex-direction:row;justify-content:space-between;align-items:center}
+    }
+    @media(min-width:1000px){
+      .hero h1{font-size:3.2rem}
+      .slide img{height:520px}
     }
 
-    h1, h2, h3 {
-      margin: 0;
-      padding: 0;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    section {
-      padding: 80px 20px;
-      max-width: 1100px;
-      margin: auto;
-      border-top: 1px solid #1b2b40;
-    }
-
-    /* --------------------------- NAV --------------------------- */
-    nav {
-      background: #0d121c;
-      padding: 15px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    }
-    nav a {
-      margin: 0 20px;
-      font-weight: 600;
-      color: #9bd0ff;
-      transition: 0.3s;
-    }
-    nav a:hover {
-      color: #fff;
-    }
-
-    /* --------------------------- HEADER --------------------------- */
-    header {
-      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-                  url("https://placehold.co/1600x700/0a1a2f/9bd0ff?text=Cenarium+FX") center/cover no-repeat;
-      min-height: 60vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 40px 20px;
-    }
-
-    header img {
-      width: 150px;
-      margin: 0 auto 20px;
-    }
-
-    header h1 {
-      font-size: 2.8rem;
-      color: #9bd0ff;
-    }
-
-    header h2 {
-      color: #ccc;
-      font-weight: 300;
-      margin-top: 10px;
-      font-size: 1.2rem;
-    }
-
-    .cta-button {
-      display: inline-block;
-      background-color: #9bd0ff;
-      padding: 12px 30px;
-      margin-top: 25px;
-      border-radius: 25px;
-      color: #0d121c;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-    .cta-button:hover {
-      background: #fff;
-    }
-
-    /* --------------------------- CARROSSEL --------------------------- */
-    .carousel-container {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      margin-top: 40px;
-    }
-
-    .carousel-track {
-      display: flex;
-      transition: transform 0.5s ease;
-    }
-
-    .carousel-item {
-      min-width: 100%;
-      padding: 20px;
-    }
-
-    .carousel-item img {
-      width: 100%;
-      max-height: 450px;
-      object-fit: cover;
-      border-radius: 12px;
-    }
-
-    .carousel-button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: #9bd0ff;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      font-weight: bold;
-      color: #0d121c;
-      border-radius: 6px;
-      transition: 0.3s;
-    }
-
-    .carousel-button:hover {
-      background: #fff;
-    }
-
-    .carousel-button.prev {
-      left: 10px;
-    }
-
-    .carousel-button.next {
-      right: 10px;
-    }
-
-    /* --------------------------- FOOTER --------------------------- */
-    footer {
-      padding: 20px;
-      border-top: 1px solid #1b2b40;
-      font-size: 14px;
-      color: #aaa;
-      margin-top: 40px;
-    }
   </style>
-
 </head>
 <body>
 
-  <!-- ----------------------- NAV ----------------------- -->
+  <!-- NAV -->
   <nav>
-    <a href="#quem-somos">QUEM SOMOS</a>
-    <a href="#portfolio">PORTFÓLIO</a>
-    <a href="#responsabilidade">RESPONSABILIDADE</a>
-    <a href="#contato">CONTATO</a>
+    <div class="nav-inner">
+      <div class="brand">
+        <img src="logo.png" alt="Logo Cenarium FX" />
+        <h4>Cenarium FX</h4>
+      </div>
+      <div class="nav-links">
+        <a href="#quem-somos">Quem Somos</a>
+        <a href="#portfolio">Portfólio</a>
+        <a href="#responsabilidade">Responsabilidade</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </div>
   </nav>
 
-  <!-- ----------------------- HEADER ----------------------- -->
+  <!-- HEADER -->
   <header>
-    <img src="logo.png" alt="Logo Cenarium FX">
-    <h1>Cenarium FX</h1>
-    <h2>Transformando imaginação em experiências visuais inesquecíveis.</h2>
-    <a href="#contato" class="cta-button">Fale Conosco</a>
+    <div class="hero">
+      <img src="logo.png" alt="Logo Cenarium FX" />
+      <h1>Cenarium FX</h1>
+      <p class="lead">Transformar ideias em experiências visuais inesquecíveis, unindo tecnologia, arte e criatividade.</p>
+      <a class="cta" href="#contato">FALE CONOSCO</a>
+    </div>
   </header>
 
-  <!-- ----------------------- QUEM SOMOS ----------------------- -->
-  <section id="quem-somos">
-    <h2>Quem Somos</h2>
-    <p>
-      A Cenarium FX é especializada na criação de experiências visuais imersivas,
-      combinando tecnologia, arte e inovação para transformar ideias em realidade.
-    </p>
+  <main>
 
-    <br><br>
-    <h3>Missão</h3>
-    <p>Transformar ideias em experiências visuais inesquecíveis.</p>
+    <!-- QUEM SOMOS -->
+    <section id="quem-somos">
+      <div class="container">
+        <h2>Quem Somos</h2>
+        <p class="lead">
+          A <strong>Cenarium FX</strong> é especializada na criação de experiências visuais imersivas,
+          combinando tecnologia, arte e inovação para transformar ideias em realidade. Atuamos na confecção
+          de objetos cenográficos, vidro cenográfico, acompanhamento em gravações e apoio à produção televisiva
+          e cinematográfica.
+        </p>
 
-    <h3>Visão</h3>
-    <p>Ser referência global em efeitos especiais.</p>
+        <div class="who-grid">
+          <div class="card">
+            <h3>Missão</h3>
+            <p>Transformar ideias em experiências visuais inesquecíveis, unindo tecnologia, arte e criatividade.</p>
+            <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0">
+            <h3>Visão</h3>
+            <p>Ser reconhecida como referência global em efeitos especiais, criando mundos visuais que inspiram, emocionam e redefinem os limites da imaginação.</p>
+          </div>
 
-    <h3>Valores</h3>
-    <p>Criatividade • Excelência Técnica • Inovação • Ética • Impacto Positivo</p>
-  </section>
+          <div class="card">
+            <h3>Propósito</h3>
+            <p>Dar vida à imaginação e tornar o impossível visível, conectando pessoas a histórias através de experiências visuais imersivas.</p>
 
-  <!-- ----------------------- PORTFÓLIO (CARROSSEL) ----------------------- -->
-  <section id="portfolio">
-    <h2>Portfólio</h2>
-    <p>Confira alguns de nossos trabalhos que unem técnica, arte e inovação.</p>
+            <h3 style="margin-top:12px">Valores</h3>
+            <div class="values-list">
+              <span class="pill">Criatividade</span>
+              <span class="pill">Excelência Técnica</span>
+              <span class="pill">Inovação</span>
+              <span class="pill">Colaboração</span>
+              <span class="pill">Ética</span>
+              <span class="pill">Transparência</span>
+              <span class="pill">Impacto Positivo</span>
+            </div>
 
-    <div class="carousel-container" id="portfolio-carousel">
-      <button class="carousel-button prev" onclick="prevSlide('portfolio-carousel')">‹</button>
-      <div class="carousel-track">
-        <div class="carousel-item">
-          <img src="https://placehold.co/1200x600/1a3a5f/ffffff?text=Projeto+1" />
-        </div>
-        <div class="carousel-item">
-          <img src="https://placehold.co/1200x600/2c4d6f/ffffff?text=Projeto+2" />
-        </div>
-        <div class="carousel-item">
-          <img src="https://placehold.co/1200x600/3f5f80/ffffff?text=Projeto+3" />
-        </div>
+            <h3 style="margin-top:14px">Compromisso ESG</h3>
+            <p style="color:var(--muted);margin-top:6px">
+              Integramos práticas ambientais, sociais e de governança em todas as etapas do nosso trabalho, 
+              priorizando economia circular, bem-estar do time e governança responsável.
+            </p>
+          </div>
+        </div> <!-- who-grid -->
       </div>
-      <button class="carousel-button next" onclick="nextSlide('portfolio-carousel')">›</button>
-    </div>
-  </section>
+    </section>
 
-  <!-- ---------------- RESPONSABILIDADE SOCIAL E AMBIENTAL (CARROSSEL) ---------------- -->
-  <section id="responsabilidade">
-    <h2>Responsabilidade Social e Ambiental</h2>
-    <p>Nosso compromisso ESG guia nossas ações e decisões diárias.</p>
+    <!-- PORTFÓLIO (CARROSSEL) -->
+    <section id="portfolio">
+      <div class="container">
+        <h2>Portfólio</h2>
+        <p class="lead">Projetos que combinam técnica, design e inovação — trabalhos em cinema, publicidade, shows e eventos.</p>
 
-    <div class="carousel-container" id="responsabilidade-carousel">
-      <button class="carousel-button prev" onclick="prevSlide('responsabilidade-carousel')">‹</button>
-
-      <div class="carousel-track">
-        
-        <div class="carousel-item">
-          <h3>Ambiental</h3>
-          <p>Reaproveitamento de materiais, economia circular e redução de descartáveis.</p>
-        </div>
-
-        <div class="carousel-item">
-          <h3>Social</h3>
-          <p>Diversidade, segurança, bem-estar da equipe e capacitação contínua.</p>
-        </div>
-
-        <div class="carousel-item">
-          <h3>Governança</h3>
-          <p>Ética, transparência, compliance e gestão de riscos.</p>
+        <div class="carousel-wrap" id="portfolio-wrap">
+          <button class="carousel-btn prev" aria-label="Anterior" onclick="prev('portfolio')">‹</button>
+          <div class="carousel-track" id="portfolio-track">
+            <!-- substitua as imagens abaixo pelas suas imagens reais -->
+            <div class="slide"><img src="https://placehold.co/1200x700/1a3a5f/ffffff?text=Projeto+1" alt="Projeto 1"></div>
+            <div class="slide"><img src="https://placehold.co/1200x700/2c4d6f/ffffff?text=Projeto+2" alt="Projeto 2"></div>
+            <div class="slide"><img src="https://placehold.co/1200x700/3f5f80/ffffff?text=Projeto+3" alt="Projeto 3"></div>
+          </div>
+          <button class="carousel-btn next" aria-label="Próximo" onclick="next('portfolio')">›</button>
+          <div class="carousel-dots" id="portfolio-dots"></div>
         </div>
 
       </div>
+    </section>
 
-      <button class="carousel-button next" onclick="nextSlide('responsabilidade-carousel')">›</button>
-    </div>
-  </section>
+    <!-- RESPONSABILIDADE (CARROSSEL ESG) -->
+    <section id="responsabilidade">
+      <div class="container">
+        <h2>Responsabilidade Social e Ambiental</h2>
+        <p class="lead">Nosso Plano ESG orienta ações ambientais, sociais e de governança — práticas integradas ao negócio para gerar valor sustentável.</p>
 
-  <!-- ----------------------- CONTATO ----------------------- -->
-  <section id="contato">
-    <h2>Contato</h2>
-    <p>Email: contato@cenarium.com.br</p>
-    <p>Telefone: (21) 96427-0804</p>
-    <p>Instagram | YouTube | LinkedIn</p>
-  </section>
+        <div class="carousel-wrap" id="esg-wrap">
+          <button class="carousel-btn prev" aria-label="Anterior" onclick="prev('esg')">‹</button>
+          <div class="carousel-track" id="esg-track">
+            <!-- Slide 1 - Ambiental -->
+            <div class="slide card esg-card">
+              <h3>Ambiental (E)</h3>
+              <p style="color:var(--muted);margin-top:6px">
+                A Cenarium Efeitos Especiais prioriza ações para reduzir impactos ambientais e promover economia circular.
+              </p>
+              <ul>
+                <li><strong>Reaproveitamento de materiais:</strong> reaproveitamos e reinventamos peças e adereços sempre que possível.</li>
+                <li><strong>Gestão de resíduos e economia circular:</strong> processos para reduzir descarte e prolongar ciclo de vida dos materiais.</li>
+                <li><strong>Uso responsável da água:</strong> rotinas para minimizar consumo e perdas.</li>
+                <li><strong>Materiais sustentáveis:</strong> preferência por madeiras de reflorestamento e fornecedores responsáveis.</li>
+              </ul>
+            </div>
+
+            <!-- Slide 2 - Social -->
+            <div class="slide card esg-card">
+              <h3>Social (S)</h3>
+              <p style="color:var(--muted);margin-top:6px">
+                Focamos no bem-estar da equipe e no impacto positivo para a comunidade local.
+              </p>
+              <ul>
+                <li><strong>Saúde, segurança e bem-estar:</strong> medidas e treinamentos para ambientes de trabalho seguros.</li>
+                <li><strong>Diversidade, equidade e inclusão:</strong> políticas que promovem oportunidades e respeito.</li>
+                <li><strong>Desenvolvimento da comunidade local:</strong> parcerias, capacitações e apoio a iniciativas culturais.</li>
+                <li><strong>Capacitação técnica:</strong> treinamentos contínuos em VFX, tecnologia e segurança.</li>
+              </ul>
+            </div>
+
+            <!-- Slide 3 - Governança -->
+            <div class="slide card esg-card">
+              <h3>Governança (G)</h3>
+              <p style="color:var(--muted);margin-top:6px">
+                Práticas de governança fortalecem nossa transparência e gestão de riscos.
+              </p>
+              <ul>
+                <li><strong>Ética, compliance e transparência:</strong> códigos de conduta e prestação de contas.</li>
+                <li><strong>Estrutura de governança:</strong> responsabilidades claras e controles internos.</li>
+                <li><strong>Gestão de riscos e conformidade:</strong> monitoramento e medidas preventivas.</li>
+              </ul>
+            </div>
+
+            <!-- Slide 4 - ODS (Resumo) -->
+            <div class="slide card esg-card">
+              <h3>ODS Relevantes</h3>
+              <p style="color:var(--muted);margin-top:6px">Alinhamos ações a metas dos Objetivos de Desenvolvimento Sustentável (ONU):</p>
+              <ul>
+                <li><strong>ODS 7 – Energia limpa e acessível:</strong> uso e eficiência energética.</li>
+                <li><strong>ODS 8 – Trabalho decente:</strong> emprego de qualidade, capacitação e inclusão.</li>
+                <li><strong>ODS 9 – Indústria, inovação e infraestrutura:</strong> investimento em tecnologia e soluções eficientes.</li>
+                <li><strong>ODS 12 – Consumo e produção responsáveis:</strong> economia circular e redução de descartáveis.</li>
+                <li><strong>ODS 17 – Parcerias:</strong> cooperação com universidades, ONGs e fornecedores responsáveis.</li>
+              </ul>
+            </div>
+
+          </div>
+          <button class="carousel-btn next" aria-label="Próximo" onclick="next('esg')">›</button>
+          <div class="carousel-dots" id="esg-dots"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato">
+      <div class="container">
+        <h2>Contato</h2>
+        <p class="lead">Vamos conversar? Envie uma mensagem ou fale conosco por uma das opções abaixo.</p>
+
+        <div class="contact-grid">
+          <div class="card">
+            <h3>Informações</h3>
+            <div style="margin-top:8px">
+              <p style="margin:6px 0"><strong>Email:</strong> contato@cenarium.com.br</p>
+              <p style="margin:6px 0"><strong>Telefone:</strong> (21) 96427-0804</p>
+              <p style="margin:6px 0;color:var(--muted)"><strong>Endereço:</strong> (preencher)</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Redes</h3>
+            <p style="color:var(--muted);margin-top:8px">Siga-nos nas redes sociais para ver projetos, making-of e novidades.</p>
+            <p style="margin-top:12px"><strong>Instagram</strong> • <strong>YouTube</strong> • <strong>LinkedIn</strong></p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
 
   <footer>
-    © 2025 Cenarium FX – Efeitos Especiais
+    © 2025 Cenarium Efeitos Especiais e Eventos Ltda — Todos os direitos reservados.
   </footer>
 
-  <!-- ----------------------- JS DOS CARROSSEIS ----------------------- -->
+  <!-- ------------------- SCRIPTS CARROSSEL ------------------- -->
   <script>
-    function nextSlide(id) {
-      const container = document.getElementById(id);
-      const track = container.querySelector(".carousel-track");
-      const items = track.children.length;
-      let index = parseInt(container.getAttribute("data-index") || "0");
+    /* CARROSSEL GENERICO (suporta múltiplos) */
+    function setupCarousel(name){
+      const track = document.getElementById(name + '-track');
+      const dotsEl = document.getElementById(name + '-dots');
+      const slides = track ? track.children : [];
+      if(!track) return;
 
-      index = (index + 1) % items;
-      container.setAttribute("data-index", index);
-
-      track.style.transform = `translateX(-${index * 100}%)`;
+      // criar dots
+      for(let i=0;i<slides.length;i++){
+        const dot = document.createElement('div');
+        dot.className = 'dot' + (i===0 ? ' active' : '');
+        dot.addEventListener('click', ()=>goTo(name,i));
+        dotsEl.appendChild(dot);
+      }
+      // dados iniciais
+      track.style.transform = 'translateX(0%)';
+      document.getElementById(name + '-wrap')?.setAttribute('data-index', '0');
     }
 
-    function prevSlide(id) {
-      const container = document.getElementById(id);
-      const track = container.querySelector(".carousel-track");
-      const items = track.children.length;
-      let index = parseInt(container.getAttribute("data-index") || "0");
-
-      index = (index - 1 + items) % items;
-      container.setAttribute("data-index", index);
-
-      track.style.transform = `translateX(-${index * 100}%)`;
+    function next(name){
+      const track = document.getElementById(name + '-track');
+      const wrap = document.getElementById(name + '-wrap');
+      const dots = document.getElementById(name + '-dots');
+      if(!track || !wrap) return;
+      const total = track.children.length;
+      let idx = parseInt(wrap.getAttribute('data-index') || '0',10);
+      idx = (idx + 1) % total;
+      wrap.setAttribute('data-index', idx);
+      track.style.transform = 'translateX(-' + (idx*100) + '%)';
+      updateDots(dots, idx);
     }
+
+    function prev(name){
+      const track = document.getElementById(name + '-track');
+      const wrap = document.getElementById(name + '-wrap');
+      const dots = document.getElementById(name + '-dots');
+      if(!track || !wrap) return;
+      const total = track.children.length;
+      let idx = parseInt(wrap.getAttribute('data-index') || '0',10);
+      idx = (idx - 1 + total) % total;
+      wrap.setAttribute('data-index', idx);
+      track.style.transform = 'translateX(-' + (idx*100) + '%)';
+      updateDots(dots, idx);
+    }
+
+    function goTo(name, index){
+      const track = document.getElementById(name + '-track');
+      const wrap = document.getElementById(name + '-wrap');
+      const dots = document.getElementById(name + '-dots');
+      if(!track || !wrap) return;
+      wrap.setAttribute('data-index', index);
+      track.style.transform = 'translateX(-' + (index*100) + '%)';
+      updateDots(dots, index);
+    }
+
+    function updateDots(dotsEl, idx){
+      if(!dotsEl) return;
+      const dots = [...dotsEl.children];
+      dots.forEach((d,i)=> d.classList.toggle('active', i===idx));
+    }
+
+    // Inicializa carrosséis
+    document.addEventListener('DOMContentLoaded', function(){
+      // necessário: elementos com ids: portfolio-wrap/track/dots e esg-wrap/track/dots
+      // map custom ids to generic names used in script:
+      // adapt wrappers to expected ids:
+      // create expected wrapper ids:
+      const portfolioWrap = document.getElementById('portfolio-wrap');
+      if(portfolioWrap){ portfolioWrap.id = 'portfolio-wrap'; portfolioWrap.setAttribute('id','portfolio-wrap'); }
+      const esgWrap = document.getElementById('esg-wrap');
+      if(esgWrap){ esgWrap.id = 'esg-wrap'; esgWrap.setAttribute('id','esg-wrap'); }
+
+      // create clones of dots containers if not present
+      // ensure specific ids referenced by setupCarousel exist:
+      // We already used ids portfolio-track, portfolio-dots, esg-track, esg-dots in HTML
+
+      setupCarousel('portfolio');
+      setupCarousel('esg');
+
+      // optional: autoplay (commented if undesired)
+      // setInterval(()=> next('portfolio'), 5000);
+      // setInterval(()=> next('esg'), 7000);
+    });
   </script>
 
 </body>
