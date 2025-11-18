@@ -7,20 +7,22 @@
 
   <style>
 
-    /* ============================================
-       VARIÁVEIS GERAIS
-    ============================================ */
+    /* ======================================================
+       NOVA PALETA CINEMATOGRÁFICA DARK
+    ====================================================== */
     :root{
-      --bg-1:#0d121c;  /* header */
-      --bg-2:#0b0f17;  /* quem somos */
-      --bg-3:#102033;  /* portfólio */
-      --bg-4:#08131f;  /* responsabilidade */
-      --bg-5:#060b12;  /* contato */
+      --bg-1:#0A0A0F;  /* header - preto profundo */
+      --bg-2:#0D1017;  /* quem somos */
+      --bg-3:#11141D;  /* portfólio */
+      --bg-4:#0B0E16;  /* responsabilidade */
+      --bg-5:#0F121B;  /* contato */
 
-      --accent:#9bd0ff;
-      --muted:#bcd1e6;
-      --card:#0f1a28;
-      --border:#1b2b40;
+      --accent:#4DBAFF;     /* azul neon bonito */
+      --accent-soft:#7EC8FF;
+      --muted:#C3CFDA;
+
+      --card:#161A23;       /* grafite azulado */
+      --border:#253041;
     }
 
     *{ box-sizing:border-box; }
@@ -28,15 +30,18 @@
       margin:0;
       font-family:Inter, system-ui, sans-serif;
       color:white;
-      scroll-behavior:smooth;
       background:var(--bg-1);
+      scroll-behavior:smooth;
     }
 
-    a{ text-decoration:none; color:inherit; }
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
 
-    /* ============================================
-       ANIMAÇÃO SCROLL + FADE
-    ============================================ */
+    /* ======================================================
+       SCROLL + FADE
+    ====================================================== */
     [data-animate]{
       opacity:0;
       transform:translateY(25px);
@@ -47,17 +52,17 @@
       transform:translateY(0);
     }
 
-    /* ============================================
+    /* ======================================================
        NAV
-    ============================================ */
+    ====================================================== */
     nav{
       position:sticky;
       top:0;
       z-index:999;
-      background:rgba(10,15,25,0.75);
-      backdrop-filter:blur(6px);
+      background:rgba(5,8,12,0.7);
+      backdrop-filter:blur(8px);
       border-bottom:1px solid rgba(255,255,255,0.05);
-      padding:12px 20px;
+      padding:14px 20px;
     }
     nav .inner{
       max-width:1200px;
@@ -70,74 +75,101 @@
       margin-left:20px;
       font-weight:600;
       color:var(--accent);
-      font-size:0.95rem;
-      transition:.2s;
+      transition:.25s;
     }
-    nav a:hover{ color:white; }
+    nav a:hover{
+      color:white;
+    }
 
-    /* ============================================
-       HEADER (logo grande, fundo limpo)
-    ============================================ */
+    /* ======================================================
+       HEADER – LOGO GRANDE + FUNDO BONITO
+    ====================================================== */
     header{
-      background:var(--bg-1);
-      position:relative;
-      min-height:65vh;
+      background:linear-gradient(165deg, #0A0A0F 0%, #0D1017 100%);
+      min-height:68vh;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:40px 20px;
+      text-align:center;
+      padding:50px 20px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    /* Glow suave atrás da logo */
+    header:before{
+      content:"";
+      position:absolute;
+      width:600px;
+      height:600px;
+      background:radial-gradient(circle, rgba(77,186,255,0.18), transparent 70%);
+      top:50%;
+      left:50%;
+      transform:translate(-50%, -50%);
+      filter:blur(40px);
+      opacity:.75;
     }
 
     .hero{
-      text-align:center;
-      max-width:900px;
       position:relative;
       z-index:10;
     }
+
     .hero img{
-      width:380px;
+      width:420px;
       margin-bottom:25px;
-      filter:drop-shadow(0 8px 20px rgba(0,0,0,0.6));
+      filter:drop-shadow(0 10px 22px rgba(0,0,0,0.8));
+      animation:logoFade 1.4s ease forwards;
+      opacity:0;
     }
+
+    @keyframes logoFade{
+      0%{ opacity:0; transform:scale(.92); }
+      100%{ opacity:1; transform:scale(1); }
+    }
+
     .hero p{
       color:var(--muted);
-      margin-bottom:25px;
       font-size:1.25rem;
+      margin-bottom:25px;
     }
+
     .cta{
       display:inline-block;
       background:var(--accent);
-      color:var(--bg-1);
+      color:#061018;
       padding:13px 36px;
-      border-radius:100px;
+      border-radius:60px;
       font-weight:700;
-      transition:.2s;
+      transition:.25s;
     }
-    .cta:hover{ background:white; }
+    .cta:hover{
+      background:white;
+    }
 
-    /* ============================================
+    /* ======================================================
        SEÇÕES
-    ============================================ */
+    ====================================================== */
     section{
-      padding:80px 20px;
+      padding:85px 20px;
     }
     .container{
       max-width:1100px;
       margin:auto;
     }
     section h2{
-      font-size:1.5rem;
-      color:var(--accent);
-      margin-bottom:10px;
+      font-size:1.6rem;
+      color:var(--accent-soft);
+      margin-bottom:12px;
     }
     .lead{
       color:var(--muted);
-      margin-bottom:30px;
+      margin-bottom:35px;
     }
 
-    /* ============================================
+    /* ======================================================
        QUEM SOMOS
-    ============================================ */
+    ====================================================== */
     #quem-somos{ background:var(--bg-2); }
 
     .who-grid{
@@ -145,17 +177,19 @@
       gap:20px;
     }
     @media(min-width:850px){
-      .who-grid{ grid-template-columns:1fr 1fr; }
+      .who-grid{
+        grid-template-columns:1fr 1fr;
+      }
     }
 
     .card{
       background:var(--card);
       padding:22px;
       border-radius:12px;
-      border:1px solid rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.05);
     }
     .pill{
-      background:rgba(155,208,255,0.15);
+      background:rgba(77,186,255,0.12);
       padding:7px 14px;
       border-radius:40px;
       color:var(--accent);
@@ -164,9 +198,9 @@
       font-weight:600;
     }
 
-    /* ============================================
+    /* ======================================================
        CARROSSEL
-    ============================================ */
+    ====================================================== */
     #portfolio{ background:var(--bg-3); }
 
     .carousel-wrap{
@@ -186,6 +220,7 @@
       height:480px;
       object-fit:cover;
       border-radius:12px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.4);
     }
 
     .carousel-btn{
@@ -193,7 +228,7 @@
       top:50%;
       transform:translateY(-50%);
       background:var(--accent);
-      color:var(--bg-2);
+      color:#061018;
       padding:10px 16px;
       border:none;
       border-radius:8px;
@@ -209,11 +244,11 @@
       margin-top:10px;
     }
     .dot{
-      width:10px;
-      height:10px;
+      width:11px;
+      height:11px;
       border-radius:50%;
       display:inline-block;
-      background:rgba(255,255,255,0.22);
+      background:rgba(255,255,255,0.25);
       cursor:pointer;
       margin:4px;
     }
@@ -221,9 +256,9 @@
       background:var(--accent);
     }
 
-    /* ============================================
+    /* ======================================================
        ESG
-    ============================================ */
+    ====================================================== */
     #responsabilidade{ background:var(--bg-4); }
 
     .esg-img{
@@ -235,9 +270,9 @@
       display:block;
     }
 
-    /* ============================================
+    /* ======================================================
        CONTATO
-    ============================================ */
+    ====================================================== */
     #contato{ background:var(--bg-5); }
 
     .contact-grid{
@@ -245,16 +280,18 @@
       gap:20px;
     }
     @media(min-width:850px){
-      .contact-grid{ grid-template-columns:1fr 1fr; }
+      .contact-grid{
+        grid-template-columns:1fr 1fr;
+      }
     }
 
-    /* ============================================
+    /* ======================================================
        FOOTER
-    ============================================ */
+    ====================================================== */
     footer{
       padding:22px;
       text-align:center;
-      color:#8ea0b8;
+      color:#9AAFBD;
       font-size:0.95rem;
       border-top:1px solid rgba(255,255,255,0.06);
     }
@@ -337,9 +374,9 @@
       <button class="carousel-btn prev" onclick="prev('portfolio')">‹</button>
 
       <div class="carousel-track" id="portfolio-track">
-        <div class="slide"><img src="https://placehold.co/1200x700/1a3a5f/fff?text=Projeto+1"></div>
-        <div class="slide"><img src="https://placehold.co/1200x700/2c4d6f/fff?text=Projeto+2"></div>
-        <div class="slide"><img src="https://placehold.co/1200x700/3d5f85/fff?text=Projeto+3"></div>
+        <div class="slide"><img src="https://placehold.co/1200x700/1F2A39/fff?text=Projeto+1"></div>
+        <div class="slide"><img src="https://placehold.co/1200x700/2A3A4D/fff?text=Projeto+2"></div>
+        <div class="slide"><img src="https://placehold.co/1200x700/35455A/fff?text=Projeto+3"></div>
       </div>
 
       <button class="carousel-btn next" onclick="next('portfolio')">›</button>
@@ -475,13 +512,13 @@
 </footer>
 
 
-<!-- ============================================
-     JS — Carrossel + Swipe + Animação scroll
-============================================ -->
+<!-- ======================================================
+     JS — CARROSSEL + SWIPE + ANIMAÇÃO
+====================================================== -->
 <script>
 
   /* --------------------------------------
-     ANIMAÇÃO DE SCROLL
+     ANIMAÇÃO SCROLL
   -------------------------------------- */
   const elements = document.querySelectorAll("[data-animate]");
   const observer = new IntersectionObserver(entries=>{
@@ -491,7 +528,6 @@
       }
     });
   }, {threshold:0.2});
-
   elements.forEach(el=>observer.observe(el));
 
   /* --------------------------------------
@@ -557,7 +593,7 @@
   }
 
   /* --------------------------------------
-     SWIPE (touch)
+     SWIPE (TOUCH + DESKTOP)
   -------------------------------------- */
   function enableSwipe(name){
     const wrap=document.getElementById(name+"-wrap");
@@ -575,30 +611,25 @@
       if(!isDown) return;
       let endX=e.changedTouches[0].clientX;
       let diff=endX-startX;
-
       if(diff>50) prev(name);
       else if(diff<-50) next(name);
-
       isDown=false;
     });
 
-    /* Desktop arrastar com mouse */
     track.addEventListener("mousedown", e=>{
       startX=e.clientX;
       isDown=true;
     });
+
     track.addEventListener("mouseup", e=>{
       if(!isDown) return;
       let diff=e.clientX-startX;
-
       if(diff>60) prev(name);
       else if(diff<-60) next(name);
-
       isDown=false;
     });
   }
 
-  /* Inicializar carrosséis */
   setupCarousel("portfolio");
   setupCarousel("esg");
 
