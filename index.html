@@ -3,163 +3,285 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cenarium Efeitos Especiais e Eventos Ltda</title>
-  
+  <title>Cenarium FX - Efeitos Especiais</title>
+
   <style>
-    /* CSS GLOBAL */
+    /* --------------------------- GLOBAL --------------------------- */
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif; /* Usando Inter como padrão moderno */
-      background-color: #0d121c; /* Fundo escuro uniforme */
+      font-family: "Inter", Arial, sans-serif;
+      background: #0d121c;
       color: white;
-      text-align: center; 
-    }
-    
-    /* NAV BAR (TOPO) */
-    nav {
-        background-color: #0d121c;
-        padding: 15px 20px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    }
-    nav a {
-        color: #9bd0ff;
-        text-decoration: none;
-        margin: 0 15px;
-        font-weight: bold;
-        transition: color 0.3s;
-    }
-    nav a:hover {
-        color: #fff;
+      text-align: center;
     }
 
-    /* HEADER (NOVO BANNER DE DESTAQUE) */
+    h1, h2, h3 {
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    section {
+      padding: 80px 20px;
+      max-width: 1100px;
+      margin: auto;
+      border-top: 1px solid #1b2b40;
+    }
+
+    /* --------------------------- NAV --------------------------- */
+    nav {
+      background: #0d121c;
+      padding: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    nav a {
+      margin: 0 20px;
+      font-weight: 600;
+      color: #9bd0ff;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: #fff;
+    }
+
+    /* --------------------------- HEADER --------------------------- */
     header {
-      /* Imagem de fundo placeholder. Substitua o URL abaixo pela sua imagem real! */
-      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                  url("https://placehold.co/1200x500/0a1a2f/9bd0ff?text=Cenarium+FX+Efeitos") center/cover no-repeat;
-      padding: 80px 20px; /* Mais padding para imitar um banner */
-      text-align: center;
-      min-height: 40vh; /* Altura mínima para o banner */
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                  url("https://placehold.co/1600x700/0a1a2f/9bd0ff?text=Cenarium+FX") center/cover no-repeat;
+      min-height: 60vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      padding: 40px 20px;
     }
 
-    /* ESTILOS DE TÍTULOS */
-    h1 {
+    header img {
+      width: 150px;
+      margin: 0 auto 20px;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
       color: #9bd0ff;
-      margin-top: 10px;
-      font-size: 2.5rem;
     }
-    
-    /* ESTILO DO SLOGAN (H2) */
-    h2 {
-      color: #bbb;
+
+    header h2 {
+      color: #ccc;
       font-weight: 300;
+      margin-top: 10px;
       font-size: 1.2rem;
-      margin-bottom: 30px;
     }
-    
-    /* BOTÃO CTA (CALL TO ACTION) - Minimalista */
+
     .cta-button {
-        display: inline-block;
-        background-color: #9bd0ff;
-        color: #0d121c;
-        padding: 10px 25px; /* Tamanho discreto */
-        text-decoration: none;
-        border-radius: 20px; /* Borda suave */
-        font-weight: bold;
-        transition: background-color 0.3s;
-        margin-top: 20px;
-        font-size: 0.9rem; 
+      display: inline-block;
+      background-color: #9bd0ff;
+      padding: 12px 30px;
+      margin-top: 25px;
+      border-radius: 25px;
+      color: #0d121c;
+      font-weight: bold;
+      transition: 0.3s;
     }
     .cta-button:hover {
-        background-color: #fff;
+      background: #fff;
     }
 
-    /* CONTAINER DE CONTEÚDO PRINCIPAL (Separa as seções do fundo gradiente) */
-    .main-content {
-        background-color: #050a11;
+    /* --------------------------- CARROSSEL --------------------------- */
+    .carousel-container {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      margin-top: 40px;
     }
-    
-    /* ESTILOS DE SEÇÃO */
-    section {
-      padding: 80px 20px;
-      max-width: 1000px;
-      margin: auto;
-      text-align: center;
-      border-top: 1px solid #1a3a5f; /* Separador visual */
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
     }
-    
-    /* AJUSTE NA IMAGEM (Dentro do header) */
-    header img {
-        margin-bottom: 20px;
+
+    .carousel-item {
+      min-width: 100%;
+      padding: 20px;
     }
-    
-    /* ESTILO DO FOOTER */
+
+    .carousel-item img {
+      width: 100%;
+      max-height: 450px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #9bd0ff;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #0d121c;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+
+    .carousel-button:hover {
+      background: #fff;
+    }
+
+    .carousel-button.prev {
+      left: 10px;
+    }
+
+    .carousel-button.next {
+      right: 10px;
+    }
+
+    /* --------------------------- FOOTER --------------------------- */
     footer {
-        padding: 20px; 
-        font-size: 14px; 
-        color: #aaa;
-        border-top: 1px solid #1a3a5f;
+      padding: 20px;
+      border-top: 1px solid #1b2b40;
+      font-size: 14px;
+      color: #aaa;
+      margin-top: 40px;
+    }
+  </style>
+
+</head>
+<body>
+
+  <!-- ----------------------- NAV ----------------------- -->
+  <nav>
+    <a href="#quem-somos">QUEM SOMOS</a>
+    <a href="#portfolio">PORTFÓLIO</a>
+    <a href="#responsabilidade">RESPONSABILIDADE</a>
+    <a href="#contato">CONTATO</a>
+  </nav>
+
+  <!-- ----------------------- HEADER ----------------------- -->
+  <header>
+    <img src="logo.png" alt="Logo Cenarium FX">
+    <h1>Cenarium FX</h1>
+    <h2>Transformando imaginação em experiências visuais inesquecíveis.</h2>
+    <a href="#contato" class="cta-button">Fale Conosco</a>
+  </header>
+
+  <!-- ----------------------- QUEM SOMOS ----------------------- -->
+  <section id="quem-somos">
+    <h2>Quem Somos</h2>
+    <p>
+      A Cenarium FX é especializada na criação de experiências visuais imersivas,
+      combinando tecnologia, arte e inovação para transformar ideias em realidade.
+    </p>
+
+    <br><br>
+    <h3>Missão</h3>
+    <p>Transformar ideias em experiências visuais inesquecíveis.</p>
+
+    <h3>Visão</h3>
+    <p>Ser referência global em efeitos especiais.</p>
+
+    <h3>Valores</h3>
+    <p>Criatividade • Excelência Técnica • Inovação • Ética • Impacto Positivo</p>
+  </section>
+
+  <!-- ----------------------- PORTFÓLIO (CARROSSEL) ----------------------- -->
+  <section id="portfolio">
+    <h2>Portfólio</h2>
+    <p>Confira alguns de nossos trabalhos que unem técnica, arte e inovação.</p>
+
+    <div class="carousel-container" id="portfolio-carousel">
+      <button class="carousel-button prev" onclick="prevSlide('portfolio-carousel')">‹</button>
+      <div class="carousel-track">
+        <div class="carousel-item">
+          <img src="https://placehold.co/1200x600/1a3a5f/ffffff?text=Projeto+1" />
+        </div>
+        <div class="carousel-item">
+          <img src="https://placehold.co/1200x600/2c4d6f/ffffff?text=Projeto+2" />
+        </div>
+        <div class="carousel-item">
+          <img src="https://placehold.co/1200x600/3f5f80/ffffff?text=Projeto+3" />
+        </div>
+      </div>
+      <button class="carousel-button next" onclick="nextSlide('portfolio-carousel')">›</button>
+    </div>
+  </section>
+
+  <!-- ---------------- RESPONSABILIDADE SOCIAL E AMBIENTAL (CARROSSEL) ---------------- -->
+  <section id="responsabilidade">
+    <h2>Responsabilidade Social e Ambiental</h2>
+    <p>Nosso compromisso ESG guia nossas ações e decisões diárias.</p>
+
+    <div class="carousel-container" id="responsabilidade-carousel">
+      <button class="carousel-button prev" onclick="prevSlide('responsabilidade-carousel')">‹</button>
+
+      <div class="carousel-track">
+        
+        <div class="carousel-item">
+          <h3>Ambiental</h3>
+          <p>Reaproveitamento de materiais, economia circular e redução de descartáveis.</p>
+        </div>
+
+        <div class="carousel-item">
+          <h3>Social</h3>
+          <p>Diversidade, segurança, bem-estar da equipe e capacitação contínua.</p>
+        </div>
+
+        <div class="carousel-item">
+          <h3>Governança</h3>
+          <p>Ética, transparência, compliance e gestão de riscos.</p>
+        </div>
+
+      </div>
+
+      <button class="carousel-button next" onclick="nextSlide('responsabilidade-carousel')">›</button>
+    </div>
+  </section>
+
+  <!-- ----------------------- CONTATO ----------------------- -->
+  <section id="contato">
+    <h2>Contato</h2>
+    <p>Email: contato@cenarium.com.br</p>
+    <p>Telefone: (21) 96427-0804</p>
+    <p>Instagram | YouTube | LinkedIn</p>
+  </section>
+
+  <footer>
+    © 2025 Cenarium FX – Efeitos Especiais
+  </footer>
+
+  <!-- ----------------------- JS DOS CARROSSEIS ----------------------- -->
+  <script>
+    function nextSlide(id) {
+      const container = document.getElementById(id);
+      const track = container.querySelector(".carousel-track");
+      const items = track.children.length;
+      let index = parseInt(container.getAttribute("data-index") || "0");
+
+      index = (index + 1) % items;
+      container.setAttribute("data-index", index);
+
+      track.style.transform = `translateX(-${index * 100}%)`;
     }
 
-  </style>
-</head>
+    function prevSlide(id) {
+      const container = document.getElementById(id);
+      const track = container.querySelector(".carousel-track");
+      const items = track.children.length;
+      let index = parseInt(container.getAttribute("data-index") || "0");
 
-<body>
-    <!-- MENU DE NAVEGAÇÃO -->
-    <nav>
-        <a href="#quem-somos">QUEM SOMOS</a>
-        <a href="#servicos">SERVIÇOS</a>
-        <a href="#portfolio">PORTFÓLIO</a>
-        <a href="#contato">CONTATO</a>
-    </nav>
-    
-    <!-- HEADER/BANNER -->
-    <header>
-      <!-- Logo -->
-      <img src="logo.png.png" alt="Cenarium FX Logo" width="180">
-      
-      <h1>Cenarium Efeitos Especiais e Eventos Ltda</h1>
-      <h2>Aqui, a sua imaginação se transforma em realidade!</h2>
-      
-      <!-- Botão CTA minimalista -->
-      <a href="#contato" class="cta-button">FALE CONOSCO</a>
-    </header>
+      index = (index - 1 + items) % items;
+      container.setAttribute("data-index", index);
 
-    <!-- CONTAINER DE SEÇÕES -->
-    <div class="main-content">
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }
+  </script>
 
-      <section id="quem-somos">
-        <h2>Quem Somos</h2>
-        <p>A Cenarium FX é uma produtora focada em transformar visões criativas em espetáculos visuais inesquecíveis, atuando há mais de 10 anos no mercado de eventos, cinema e publicidade. Nossa paixão é a inovação em efeitos especiais e a excelência técnica.</p>
-      </section>
-
-      <section id="servicos">
-        <h2>Serviços e Efeitos</h2>
-        <p>Efeitos especiais mecânicos, pirotecnia controlada, chuva, neve artificial, arte e adereços cenográficos, vidro cenográfico e muito mais.</p>
-      </section>
-
-      <section id="portfolio">
-        <h2>Portfólio</h2>
-        <p>Confira alguns de nossos trabalhos de maior destaque em filmes, shows e eventos corporativos.</p>
-        <!-- Placeholder para a seção de Portfólio - Adicione suas imagens aqui -->
-        <div style="background-color: #1a3a5f; padding: 50px; margin-top: 30px; border-radius: 8px;">
-            <p>Em breve: Galeria de Fotos e Vídeos</p>
-        </div>
-      </section>
-
-      <section id="contato">
-        <h2>Contato</h2>
-        <p>Email: contato@cenarium.com.br</p>
-        <p>Telefone: (21) 96427-0804</p> <!-- Telefone atualizado -->
-      </section>
-
-    </div> <!-- FIM DO main-content -->
-
-    <footer>
-      © 2025 Cenarium Efeitos Especiais e Eventos Ltda
-    </footer>
 </body>
 </html>
